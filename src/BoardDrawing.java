@@ -10,32 +10,30 @@ import javax.swing.JPanel;
 //note: board shape and window aesthetics to be set
 //note: unification of colors not done
 
-
+/**
+@version ED04
+@author Marilo
+*/
 public class BoardDrawing extends JPanel{
 
-	/**
-	 * 
-	 */
 	int b = 0;
 	int row = 8;
 	int col = 8;
 	ArrayList<Rectangle> cells;
-	//int player;
 	int[] cellnos;
 	
 	BoardScreen bs;
-	//ArrayList<Portal> portals;
-	//ArrayList<Player> players;
 	
+/**
+@param row linea
+@param col columna
+@param bs BoardScreen
+*/
 	public BoardDrawing(int row, int col,BoardScreen bs){
 		this.bs = bs;
-		
 		this.row = row;
 		this.col = col;
-		//player = 0;
-		//bs.players = new ArrayList<Player>();
-		//for(int i = 1;i <= bs.returnMaxPlayers();i++)
-		//    bs.players.add(new Player(i));
+
 		//get and add player(s) names
 		
 		cells = new ArrayList<Rectangle>();
@@ -64,21 +62,14 @@ public class BoardDrawing extends JPanel{
 	    }
 	
 	}
+/**
+
+@param g  Graphics
+*/
 	
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g;//.create();
-		
-		/*
-		int sw = getSize().width;
-		int sh = getSize().height;
-		int a = (int) (0.75*((sw > sh)?sh:sw));
-		
-		//Point start = new Point(0,0);
-		//Point end = new Point(100,100);
-		
-		g.drawLine(0,0,sw, sh);
-		*/
 	    
 		//Create cells
 		
@@ -173,7 +164,14 @@ public class BoardDrawing extends JPanel{
 		}
 		
 	}
+/**
 
+@param g2d 
+@param pl 
+@param cell 
+@param cellWidth 
+@param cellHeight 
+*/
   private void changePlayerPosition(Graphics2D g2d, int pl, Rectangle cell, int cellWidth, int cellHeight) {
     //only one player considered here
 				
@@ -189,6 +187,11 @@ public class BoardDrawing extends JPanel{
 		}
 	}
 	*/
+/**
+Método ensurePlayerPosition
+@param pnos 
+@return 
+*/
 	public String ensurePlayerPosition(int pnos){
 		String message = "";
 		for(Portal port :bs.portals){
@@ -202,17 +205,16 @@ public class BoardDrawing extends JPanel{
 		}
 		return message; 
 	}
-	
-	
-	/*
-	public void setPlayer(int a){
-		player = a;
-	}
-	*/
+
+/**
+Metodo setPlayer
+@param a 
+@param pnos 
+*/
 	
 	public void setPlayer(int a, int pnos){
 		bs.players.get(pnos).incPosition(a);
 	}
-	
+
 	
 }
