@@ -43,7 +43,6 @@ public class BoardScreen extends JPanel{
 	
 	public void goButtonActionListener(){
 		mw.showCard("Two");
-		//mw.setBoard();
 		mw.resetAll();
 	}
 	
@@ -90,7 +89,6 @@ public class BoardScreen extends JPanel{
 				
 		players = new ArrayList<Player>();
 		players.add(new Player(currPlayer));
-		//for(int i = 0;i < returnMaxPlayers();i++)
 		//    players.add(new Player(i));
 		//get and add player(s) names
 		
@@ -100,7 +98,6 @@ public class BoardScreen extends JPanel{
 		
 	    bd = new BoardDrawing(x, y,this);
 		bd.setVisible(true);
-		//bd.setSize(getSize());
 		
 		int sw = getSize().width;
 		int sh = getSize().height;
@@ -117,15 +114,9 @@ public class BoardScreen extends JPanel{
 		
 		stats.add(go);
 		stats.add(quit);
-		
-		
-		
-		//String playername = "Player 1";
-		
-		//currPlayer = 0;
-		
+
 		whichPlayer = new JLabel();
-		whichPlayer.setText(players.get(currPlayer).returnName());
+		whichPlayer.setText(players.get(currPlayer).getName());
 		stats.add(whichPlayer);
 		
 		extraInfo = new JLabel();
@@ -143,30 +134,27 @@ public class BoardScreen extends JPanel{
 				int a = die.nextInt(6) + 1;
 				dieResults.setText("You rolled a " + a);
 				player += a;
-				//bd.setPlayer(player);
+
 				bd.setPlayer(a, currPlayer);
-				//bd.ensurePlayerPosition();
+
 				extraInfo.setText(bd.ensurePlayerPosition(currPlayer));
 				bd.repaint();
 				
 				players.get(currPlayer).incPlayerScore(1);
 				
 				for(Player p: players){
-					if(p.returnPosition() >= x*y-1){
-						success.setText("And the winner is: " + p.returnName() + "\nYour score: " + p.returnPlayerScore());
+					if(p.getPosition() >= x*y-1){
+						success.setText("And the winner is: " + p.getName() + "\nYour score: " + p.getPlayerScore());
 					    roll.setVisible(false);
 					}
 				}
-				
-				
-				
 				if(currPlayer == maxPlayers - 1)
 					currPlayer = 0;
 				else
 					currPlayer += 1;
 				
-				//currPlayer = players.size() - 1;
-				whichPlayer.setText(players.get(currPlayer).returnName());
+
+				whichPlayer.setText(players.get(currPlayer).getName());
 				
 			}
 		});
@@ -180,10 +168,6 @@ public class BoardScreen extends JPanel{
 		
 		stats.add(extraInfo);
 		stats.add(success);
-		
-		
-		
-		
 		
 	}
 	
